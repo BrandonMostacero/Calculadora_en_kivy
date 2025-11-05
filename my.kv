@@ -1,0 +1,85 @@
+<MiWidget>:
+
+    # Se le da una orientación vertical a todo la estructura
+    orientation: "vertical"
+
+    # El título es puesto primero, agregandole un diseño
+    Label:
+        id: titulo
+        font_size: 22
+        color: 0, 0, 0, 1
+        canvas.before:
+            Color:
+                rgba: 1, 1, 0.6, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+
+    # Se ordenan los TextInput dándole una orientación horizontal 
+    BoxLayout:
+        orientation: "horizontal"
+        TextInput:
+            id: num1
+            hint_text: "A"
+            font_size: 22
+        TextInput:
+            id: num2
+            hint_text: "B"
+            font_size: 22
+    
+    # Luego, se coloca el bloque donde aparecerá el resultado, dandole un color para que se diferencie del resto
+    Label:
+        id: resultado
+        text: "Resultado"
+        font_size: 22
+        size_hint_y: None
+        color: 0, 0, 0, 1
+        canvas.before:
+            Color:
+                rgba: 0.68, 0.85, 0.9, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                
+    # Este botón es importante, ya que podremos cambiar el modo en que queremos operar, ya sea con números reales o complejos
+    Button:
+        text: "Estas en Modo: Real"
+        on_press: root.cambiar_modo()
+        on_press:
+            self.text = "Estas en Modo: Complejo" if self.text == "Estas en Modo: Real" else "Estas en Modo: Real"
+        font_size: 22
+        background_color: 0.4, 1, 0.7, 1
+    
+    # Finalmente, se colocan los botones de las operaciones básicas, dándoles un orden como de caja y un diseño de color verde.
+    BoxLayout:
+        Button:
+            text: "Sumar"
+            on_press: root.sumar()
+            font_size: 22
+            background_color: 0.4, 1, 0.7, 1
+        Button:
+            text: "Multiplicar"
+            on_press: root.multiplicar()
+            font_size: 22
+            background_color: 0.4, 1, 0.7, 1
+        Button:
+            text: "Potencia [A**B]"
+            on_press: root.potencia()
+            font_size: 22
+            background_color: 0.4, 1, 0.7, 1
+    BoxLayout:
+        Button:
+            text: "Restar"
+            on_press: root.restar()
+            font_size: 22
+            background_color: 0.4, 1, 0.7, 1
+        Button:
+            text: "Dividir"
+            on_press: root.dividir()
+            font_size: 22
+            background_color: 0.4, 1, 0.7, 1
+        Button:
+            text: "Raiz [A**(1/B)]"
+            on_press: root.raiz()
+            font_size: 22
+            background_color: 0.4, 1, 0.7, 1
